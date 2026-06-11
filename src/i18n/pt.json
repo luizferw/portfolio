@@ -1,0 +1,34 @@
+{
+  "nav": { "about": "Sobre", "experience": "Trabalho", "stack": "Stack", "contact": "Contato" },
+  "hero": {
+    "kicker": "Engenheiro Full Stack · Joinville, BR",
+    "lead": "Eu entrego",
+    "rotating": ["SaaS B2B escalável", "plataformas internas", "pipelines serverless", "engines em tempo real"],
+    "tagline": "Engenheiro full stack product-minded com ownership end-to-end — da arquitetura à produção, em React / TypeScript e Python / Node.",
+    "ctaContact": "Falar comigo",
+    "ctaCv": "Baixar CV",
+    "scroll": "Rolar"
+  },
+  "impact": { "kicker": "Impacto em números" },
+  "trusted": { "title": "Trabalho entregue para times de" },
+  "about": {
+    "kicker": "Sobre",
+    "lead": "Levo ideias até a produção —",
+    "emphasis": "e cuido de cada camada no caminho.",
+    "p1": "Sou um engenheiro full-stack que faz seu melhor trabalho na interseção entre produto e engenharia — onde boa UX encontra código limpo e escalável. Me importo com os detalhes que nunca aparecem numa demo mas decidem se um produto se sustenta em produção, e com as métricas que movem o negócio, não só com as que ficam bonitas no commit.",
+    "p2": "Hoje estou na Carbon Free Brasil, onde liderei a migração de um monólito PHP legado para serviços FastAPI modulares e construí os pipelines serverless por trás de cálculos de GHG em tempo real para 200+ clientes enterprise — John Deere, Heineken, Coca-Cola, McDonald's. Antes disso, entreguei ferramentas financeiras numa gestora de $4B+ e lancei um produto orientado a IA do 0 ao 1 como founding engineer.",
+    "p3": "Entre um SaaS B2B, uma gestora de patrimônio e uma startup early-stage, aprendi a construir produtos bem-feitos e genuinamente úteis — e, igualmente importante, a realmente colocá-los no ar.",
+    "outroLabel": "Fora do código",
+    "outro": "geralmente me acha com um violão ou uma guitarra na mão — atrás de um riff em vez de um bug."
+  },
+  "experience": { "kicker": "Trabalho selecionado", "title": "Onde eu entreguei", "present": "Atual" },
+  "stack": { "kicker": "Ferramentas", "title": "A stack que eu uso" },
+  "contact": {
+    "kicker": "Canal aberto",
+    "title": "Vamos construir algo que vai pro ar.",
+    "body": "Um projeto, uma dúvida, ou só pra trocar ideia sobre engenharia — minha caixa de entrada está aberta e eu leio tudo.",
+    "email": "Me enviar email",
+    "cert": "AWS Certified Cloud Practitioner"
+  },
+  "footer": { "built": "Feito com Astro, GSAP & Three.js", "rights": "Todos os direitos reservados" }
+}

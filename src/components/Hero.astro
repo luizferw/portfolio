@@ -1,0 +1,151 @@
+---
+import en from '../i18n/en.json';
+import pt from '../i18n/pt.json';
+
+const rotatingEn = JSON.stringify(en.hero.rotating);
+const rotatingPt = JSON.stringify(pt.hero.rotating);
+---
+
+<section id="top" class="relative flex min-h-[100svh] items-center overflow-hidden">
+  <!-- WebGL crystal (covers the CSS fallback when it boots) -->
+  <div class="pointer-events-none absolute inset-0">
+    <div class="hero-fallback absolute right-[-10%] top-1/2 h-[80vmin] w-[80vmin] -translate-y-1/2 sm:right-[2%]"></div>
+    <canvas id="hero-canvas" class="absolute right-[-12%] top-0 h-full w-[75%] sm:right-0 sm:w-[62%]" aria-hidden="true"></canvas>
+  </div>
+
+  <!-- left-edge vignette so type stays legible over the crystal -->
+  <div class="pointer-events-none absolute inset-0 bg-gradient-to-r from-bg via-bg/70 to-transparent"></div>
+  <div class="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-bg to-transparent"></div>
+
+  <div class="relative mx-auto w-full max-w-7xl px-5 pt-24 sm:px-8">
+    <p class="kicker mb-6" data-reveal data-i18n-en={en.hero.kicker} data-i18n-pt={pt.hero.kicker}>
+      {en.hero.kicker}
+    </p>
+
+    <h1 class="font-[var(--font-display)] font-extrabold leading-[0.92] tracking-[-0.03em]">
+      <span class="block overflow-hidden text-[clamp(2.8rem,11vw,8.5rem)]" data-split>Luiz Fernando</span>
+      <span class="block overflow-hidden text-[clamp(2.8rem,11vw,8.5rem)] text-accent" data-split>Witt</span>
+    </h1>
+
+    <p class="mt-7 flex flex-wrap items-baseline gap-x-3 text-[clamp(1.2rem,3.4vw,2.1rem)] font-medium" data-reveal data-reveal-delay="0.15">
+      <span data-i18n-en={en.hero.lead} data-i18n-pt={pt.hero.lead}>{en.hero.lead}</span>
+      <span
+        id="hero-rotator"
+        class="font-[var(--font-serif)] italic text-accent"
+        data-rotating-en={rotatingEn}
+        data-rotating-pt={rotatingPt}>{en.hero.rotating[0]}</span>
+    </p>
+
+    <p class="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg" data-reveal data-reveal-delay="0.25" data-i18n-en={en.hero.tagline} data-i18n-pt={pt.hero.tagline}>
+      {en.hero.tagline}
+    </p>
+
+    <div class="mt-9 flex flex-wrap items-center gap-4" data-reveal data-reveal-delay="0.35">
+      <a
+        href="#contact"
+        class="magnetic group inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 font-medium text-bg transition-[transform,box-shadow] duration-300 hover:shadow-[0_0_40px_-8px_var(--color-accent)]"
+        data-i18n-en={en.hero.ctaContact}
+        data-i18n-pt={pt.hero.ctaContact}>{en.hero.ctaContact}</a>
+      <a
+        href="/cv/luiz-witt-cv.pdf"
+        class="inline-flex items-center gap-2 rounded-full border border-[var(--line-strong)] px-6 py-3 text-ink transition-colors hover:border-accent hover:text-accent"
+        data-i18n-en={en.hero.ctaCv}
+        data-i18n-pt={pt.hero.ctaCv}>{en.hero.ctaCv}</a>
+    </div>
+  </div>
+
+  <!-- scroll cue -->
+  <a href="#about" class="absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-muted sm:flex" aria-hidden="true">
+    <span class="kicker text-muted" data-i18n-en={en.hero.scroll} data-i18n-pt={pt.hero.scroll}>{en.hero.scroll}</span>
+    <span class="scroll-line h-10 w-px bg-gradient-to-b from-accent to-transparent"></span>
+  </a>
+</section>
+
+<style>
+  .hero-fallback {
+    border-radius: 50%;
+    background:
+      radial-gradient(circle at 35% 30%, oklch(0.8 0.155 70 / 0.55), transparent 55%),
+      radial-gradient(circle at 70% 70%, oklch(0.72 0.14 248 / 0.5), transparent 55%),
+      radial-gradient(circle at 50% 50%, oklch(0.6 0.12 320 / 0.35), transparent 70%);
+    filter: blur(40px);
+    animation: float 9s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(-50%) scale(1); }
+    50% { transform: translateY(-56%) scale(1.06); }
+  }
+  .scroll-line { animation: pulse 2s ease-in-out infinite; transform-origin: top; }
+  @keyframes pulse {
+    0%, 100% { transform: scaleY(0.5); opacity: 0.4; }
+    50% { transform: scaleY(1); opacity: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-fallback, .scroll-line { animation: none; }
+  }
+</style>
+
+<script>
+  import { initHero } from '../lib/three-hero';
+
+  const canvas = document.getElementById('hero-canvas') as HTMLCanvasElement | null;
+  if (canvas) {
+    const cleanup = initHero(canvas);
+    // if WebGL is unavailable, the CSS .hero-fallback already shows; hide the dead canvas
+    if (!cleanup) canvas.style.display = 'none';
+  }
+
+  // Kinetic rotating phrase, locale-aware
+  const rotator = document.getElementById('hero-rotator');
+  if (rotator) {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let words: string[] = JSON.parse(rotator.dataset.rotatingEn || '[]');
+    let i = 0;
+    const pickWords = () => {
+      const loc = document.documentElement.getAttribute('data-locale') || 'en';
+      words = JSON.parse((loc === 'pt' ? rotator.dataset.rotatingPt : rotator.dataset.rotatingEn) || '[]');
+      i = 0;
+      rotator.textContent = words[0] ?? '';
+    };
+    window.addEventListener('locale-change', pickWords);
+    pickWords();
+
+    if (!reduced && words.length > 1) {
+      setInterval(() => {
+        i = (i + 1) % words.length;
+        rotator.animate(
+          [
+            { transform: 'translateY(0)', opacity: 1 },
+            { transform: 'translateY(-60%)', opacity: 0 },
+          ],
+          { duration: 260, easing: 'cubic-bezier(0.16,1,0.3,1)' },
+        ).onfinish = () => {
+          rotator.textContent = words[i];
+          rotator.animate(
+            [
+              { transform: 'translateY(60%)', opacity: 0 },
+              { transform: 'translateY(0)', opacity: 1 },
+            ],
+            { duration: 360, easing: 'cubic-bezier(0.16,1,0.3,1)' },
+          );
+        };
+      }, 2600);
+    }
+  }
+
+  // Magnetic CTA
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduced) {
+    document.querySelectorAll<HTMLElement>('.magnetic').forEach((el) => {
+      el.addEventListener('pointermove', (e) => {
+        const r = el.getBoundingClientRect();
+        const x = (e.clientX - r.left - r.width / 2) * 0.3;
+        const y = (e.clientY - r.top - r.height / 2) * 0.3;
+        el.style.transform = `translate(${x}px, ${y}px)`;
+      });
+      el.addEventListener('pointerleave', () => {
+        el.style.transform = '';
+      });
+    });
+  }
+</script>

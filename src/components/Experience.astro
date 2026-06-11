@@ -1,0 +1,75 @@
+---
+import { experience } from '../data/experience';
+import en from '../i18n/en.json';
+import pt from '../i18n/pt.json';
+---
+
+<section id="experience" class="relative bg-[var(--color-bg-2)] py-28 sm:py-40">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8">
+    <div class="mb-16 flex flex-wrap items-end justify-between gap-6" data-reveal>
+      <div>
+        <p class="kicker mb-4" data-i18n-en={en.experience.kicker} data-i18n-pt={pt.experience.kicker}>{en.experience.kicker}</p>
+        <h2 class="font-[var(--font-display)] text-[clamp(2rem,5vw,3.5rem)] font-extrabold tracking-tight" data-i18n-en={en.experience.title} data-i18n-pt={pt.experience.title}>
+          {en.experience.title}
+        </h2>
+      </div>
+    </div>
+
+    <div>
+      {
+        experience.map((role, idx) => (
+          <article class="role group grid gap-6 border-t border-[var(--line)] py-12 md:grid-cols-[auto_150px_1fr]" data-reveal>
+            <div class="font-[var(--font-mono)] text-sm text-faint md:pt-2">
+              0{idx + 1}
+            </div>
+
+            <div class="font-[var(--font-mono)] text-sm text-muted md:pt-2">
+              <span data-i18n-en={role.start.en} data-i18n-pt={role.start.pt}>{role.start.en}</span>
+              <span class="text-faint"> — </span>
+              {role.end ? (
+                <span data-i18n-en={role.end.en} data-i18n-pt={role.end.pt}>{role.end.en}</span>
+              ) : (
+                <span class="text-accent" data-i18n-en={en.experience.present} data-i18n-pt={pt.experience.present}>
+                  {en.experience.present}
+                </span>
+              )}
+            </div>
+
+            <div>
+              <h3 class="font-[var(--font-display)] text-2xl font-bold transition-colors duration-300 group-hover:text-accent sm:text-3xl">
+                {role.company}
+              </h3>
+              <p class="mt-1 font-medium text-accent" data-i18n-en={role.title.en} data-i18n-pt={role.title.pt}>
+                {role.title.en}
+              </p>
+              <p class="mt-1 text-sm text-muted" data-i18n-en={role.context.en} data-i18n-pt={role.context.pt}>
+                {role.context.en}
+              </p>
+
+              <ul class="mt-6 space-y-3">
+                {role.highlights.map((h) => (
+                  <li
+                    class="relative pl-6 leading-relaxed text-ink/85 before:absolute before:left-0 before:top-[0.55em] before:h-1.5 before:w-1.5 before:rounded-full before:bg-accent"
+                    data-i18n-en={h.en}
+                    data-i18n-pt={h.pt}
+                  >
+                    {h.en}
+                  </li>
+                ))}
+              </ul>
+
+              <ul class="mt-6 flex flex-wrap gap-2">
+                {role.tags.map((tag) => (
+                  <li class="rounded-full border border-[var(--line-strong)] px-3 py-1 font-[var(--font-mono)] text-xs text-muted">
+                    {tag}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        ))
+      }
+      <div class="border-t border-[var(--line)]"></div>
+    </div>
+  </div>
+</section>

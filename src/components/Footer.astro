@@ -1,0 +1,15 @@
+---
+import en from '../i18n/en.json';
+import pt from '../i18n/pt.json';
+const year = 2026;
+---
+
+<footer class="border-t border-[var(--line)] py-10">
+  <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-5 text-sm text-muted sm:flex-row sm:px-8">
+    <span class="flex items-center gap-2">
+      <span class="font-[var(--font-display)] font-bold text-ink">Luiz<span class="text-accent">.</span>Witt</span>
+      <span class="text-faint">© {year} ·</span>
+      <span class="text-faint" data-i18n-en={en.footer.rights} data-i18n-pt={pt.footer.rights}>{en.footer.rights}</span>
+    </span>
+  </div>
+</footer>

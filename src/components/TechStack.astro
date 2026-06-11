@@ -1,0 +1,38 @@
+---
+import { stack } from '../data/stack';
+import en from '../i18n/en.json';
+import pt from '../i18n/pt.json';
+---
+
+<section id="stack" class="relative py-28 sm:py-40">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8">
+    <div class="mb-16" data-reveal>
+      <p class="kicker mb-4" data-i18n-en={en.stack.kicker} data-i18n-pt={pt.stack.kicker}>{en.stack.kicker}</p>
+      <h2 class="font-[var(--font-display)] text-[clamp(2rem,5vw,3.5rem)] font-extrabold tracking-tight" data-i18n-en={en.stack.title} data-i18n-pt={pt.stack.title}>
+        {en.stack.title}
+      </h2>
+    </div>
+
+    <div class="grid gap-px overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--line)] sm:grid-cols-2 lg:grid-cols-3">
+      {
+        stack.map((g, idx) => (
+          <div class="group bg-[var(--color-bg)] p-7 transition-colors duration-300 hover:bg-[var(--color-surface)]" data-reveal data-reveal-delay={(idx * 0.05).toFixed(2)}>
+            <div class="mb-5 flex items-baseline justify-between">
+              <h3 class="font-[var(--font-mono)] text-sm uppercase tracking-wider text-muted" data-i18n-en={g.titleEn} data-i18n-pt={g.titlePt}>
+                {g.titleEn}
+              </h3>
+              <span class="font-[var(--font-mono)] text-xs text-faint">0{idx + 1}</span>
+            </div>
+            <ul class="flex flex-wrap gap-2">
+              {g.items.map((it) => (
+                <li class="rounded-lg border border-[var(--line-strong)] bg-[var(--color-surface)]/40 px-3 py-1.5 text-sm transition-colors duration-200 hover:border-accent/60 hover:text-accent">
+                  {it}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

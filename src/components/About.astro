@@ -1,0 +1,31 @@
+---
+import en from '../i18n/en.json';
+import pt from '../i18n/pt.json';
+---
+
+<section id="about" class="relative py-28 sm:py-40">
+  <div class="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[180px_1fr]">
+    <div class="lg:pt-3" data-reveal>
+      <p class="kicker" data-i18n-en={en.about.kicker} data-i18n-pt={pt.about.kicker}>{en.about.kicker}</p>
+      <p class="mt-3 font-[var(--font-mono)] text-xs text-faint">01 — 04</p>
+    </div>
+
+    <div>
+      <p class="font-[var(--font-display)] text-[clamp(1.9rem,4.4vw,3.4rem)] font-semibold leading-[1.08] tracking-tight" data-reveal>
+        <span data-i18n-en={en.about.lead} data-i18n-pt={pt.about.lead}>{en.about.lead}</span>
+        <span class="font-[var(--font-serif)] font-normal italic text-accent" data-i18n-en={en.about.emphasis} data-i18n-pt={pt.about.emphasis}>{en.about.emphasis}</span>
+      </p>
+
+      <div class="mt-12 max-w-2xl space-y-6 text-lg leading-relaxed text-muted">
+        <p data-reveal data-reveal-delay="0.05" data-i18n-en={en.about.p1} data-i18n-pt={pt.about.p1}>{en.about.p1}</p>
+        <p data-reveal data-reveal-delay="0.1" data-i18n-en={en.about.p2} data-i18n-pt={pt.about.p2}>{en.about.p2}</p>
+        <p data-reveal data-reveal-delay="0.15" data-i18n-en={en.about.p3} data-i18n-pt={pt.about.p3}>{en.about.p3}</p>
+      </div>
+
+      <div class="mt-10 flex max-w-2xl flex-col gap-2 border-l-2 border-accent/40 pl-5" data-reveal data-reveal-delay="0.2">
+        <span class="kicker inline-flex items-center gap-2" data-i18n-en={en.about.outroLabel} data-i18n-pt={pt.about.outroLabel}>{en.about.outroLabel}</span>
+        <span class="text-lg leading-relaxed text-ink/80" data-i18n-en={en.about.outro} data-i18n-pt={pt.about.outro}>{en.about.outro}</span>
+      </div>
+    </div>
+  </div>
+</section>

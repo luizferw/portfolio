@@ -1,0 +1,50 @@
+---
+// Segmented EN/PT toggle. Persists to localStorage and broadcasts a
+// `locale-change` CustomEvent so JS islands (hero rotator) can react.
+---
+
+<div
+  class="relative inline-flex items-center rounded-full border border-[var(--line-strong)] bg-[var(--color-surface)]/60 p-0.5 font-[var(--font-mono)] text-[0.7rem] backdrop-blur-md"
+  role="group"
+  aria-label="Language"
+>
+  <span id="lang-thumb" class="absolute inset-y-0.5 left-0.5 w-[calc(50%-2px)] rounded-full bg-accent transition-transform duration-300 ease-out"></span>
+  <button data-set-locale="en" class="relative z-10 w-9 py-1 text-bg transition-colors" aria-pressed="true">EN</button>
+  <button data-set-locale="pt" class="relative z-10 w-9 py-1 text-muted transition-colors" aria-pressed="false">PT</button>
+</div>
+
+<script>
+  const root = document.documentElement;
+  const thumb = document.getElementById('lang-thumb');
+  const buttons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-set-locale]'));
+
+  function apply(loc: 'en' | 'pt') {
+    root.setAttribute('data-locale', loc);
+    root.lang = loc;
+
+    // swap every translatable node
+    document.querySelectorAll<HTMLElement>('[data-i18n-en]').forEach((el) => {
+      const next = loc === 'pt' ? el.dataset.i18nPt : el.dataset.i18nEn;
+      if (next != null) el.textContent = next;
+    });
+
+    // toggle visual state
+    if (thumb) thumb.style.transform = loc === 'pt' ? 'translateX(100%)' : 'translateX(0)';
+    buttons.forEach((b) => {
+      const active = b.dataset.setLocale === loc;
+      b.setAttribute('aria-pressed', String(active));
+      b.classList.toggle('text-bg', active);
+      b.classList.toggle('text-muted', !active);
+    });
+
+    localStorage.setItem('locale', loc);
+    window.dispatchEvent(new CustomEvent('locale-change', { detail: loc }));
+  }
+
+  const saved = (localStorage.getItem('locale') as 'en' | 'pt' | null) || 'en';
+  buttons.forEach((b) =>
+    b.addEventListener('click', () => apply(b.dataset.setLocale as 'en' | 'pt')),
+  );
+  // apply saved choice on load (defer so all [data-i18n] nodes exist)
+  apply(saved);
+</script>

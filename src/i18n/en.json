@@ -1,0 +1,34 @@
+{
+  "nav": { "about": "About", "experience": "Work", "stack": "Stack", "contact": "Contact" },
+  "hero": {
+    "kicker": "Full Stack Engineer · Joinville, BR",
+    "lead": "I ship",
+    "rotating": ["scalable B2B SaaS", "internal platforms", "serverless pipelines", "real-time engines"],
+    "tagline": "Product-minded full stack engineer with end-to-end ownership — from architecture to production across React / TypeScript and Python / Node.",
+    "ctaContact": "Get in touch",
+    "ctaCv": "Download CV",
+    "scroll": "Scroll"
+  },
+  "impact": { "kicker": "Impact in numbers" },
+  "trusted": { "title": "Work shipped for teams at" },
+  "about": {
+    "kicker": "About",
+    "lead": "I take ideas all the way to production —",
+    "emphasis": "and own every layer in between.",
+    "p1": "I'm a full-stack engineer who does his best work at the intersection of product and engineering — where good UX meets clean, scalable code. I care about the details that never show up in a demo but decide whether a product holds up in production, and about the metrics that move a business rather than the ones that just look good in a commit.",
+    "p2": "Right now I'm at Carbon Free Brasil, where I led the migration of a legacy PHP monolith to modular FastAPI services and built the serverless pipelines behind real-time GHG calculations for 200+ enterprise clients — John Deere, Heineken, Coca-Cola, McDonald's. Before that I shipped financial tooling at a $4B+ wealth manager, and launched an AI-driven product from 0 to 1 as a founding engineer.",
+    "p3": "Across a B2B SaaS, a wealth-management firm, and an early-stage startup, I've learned to build products that are both well-crafted and genuinely useful — and, just as importantly, to actually ship them.",
+    "outroLabel": "Outside of code",
+    "outro": "you'll usually find me with a guitar in hand — acoustic or electric — chasing a riff instead of a bug."
+  },
+  "experience": { "kicker": "Selected work", "title": "Where I've shipped", "present": "Present" },
+  "stack": { "kicker": "Toolkit", "title": "The stack I reach for" },
+  "contact": {
+    "kicker": "Open channel",
+    "title": "Let's build something that ships.",
+    "body": "A project, a question, or just to swap notes on engineering — my inbox is open and I read everything.",
+    "email": "Email me",
+    "cert": "AWS Certified Cloud Practitioner"
+  },
+  "footer": { "built": "Built with Astro, GSAP & Three.js", "rights": "All rights reserved" }
+}
