@@ -4,19 +4,19 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description: string;
-  lang?: 'en' | 'pt';
+  lang?: 'pt-BR';
 }
-const { title, description, lang = 'en' } = Astro.props;
-const site = 'https://luizwitt.dev';
+const { title, description, lang = 'pt-BR' } = Astro.props;
+const site = 'https://luizwitt.dev'; // PLACEHOLDER_CONFIG: replace with the canonical production URL if different.
 const ogImage = `${site}/og/og.png`;
 ---
 
 <!doctype html>
-<html lang={lang} class="grain no-js" data-locale={lang}>
+<html lang={lang} class="no-js" data-locale={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#16131f" />
+    <meta name="theme-color" content="#101820" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -27,8 +27,7 @@ const ogImage = `${site}/og/og.png`;
     <meta property="og:type" content="website" />
     <meta property="og:image" content={ogImage} />
     <meta property="og:url" content={site} />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:locale:alternate" content="pt_BR" />
+    <meta property="og:locale" content="pt_BR" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
@@ -37,10 +36,7 @@ const ogImage = `${site}/og/og.png`;
     <link rel="canonical" href={site} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 
     <script is:inline>
       // flip no-js -> js as early as possible so reveals stay hidden pre-anim
@@ -51,8 +47,8 @@ const ogImage = `${site}/og/og.png`;
   <body>
     <a
       href="#main"
-      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-accent focus:px-4 focus:py-2 focus:text-bg"
-      >Skip to content</a
+      class="skip"
+      >Pular para o conteúdo</a
     >
     <slot />
   </body>
