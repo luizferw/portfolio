@@ -1,4 +1,10 @@
 ---
+import '@fontsource/archivo/latin-400.css';
+import '@fontsource/archivo/latin-600.css';
+import '@fontsource/archivo/latin-700.css';
+import '@fontsource/archivo/latin-800.css';
+import '@fontsource/ibm-plex-mono/latin-400.css';
+import '@fontsource/ibm-plex-mono/latin-600.css';
 import '../styles/global.css';
 
 interface Props {
@@ -34,10 +40,28 @@ const ogImage = `${site}/og/og.png`;
     <meta name="twitter:image" content={ogImage} />
 
     <link rel="canonical" href={site} />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-    <script is:inline defer src="https://cloud.umami.is/script.js" data-website-id="42da2378-7c50-46a4-837f-7ad8c2b3cc4a"></script>
+    <script is:inline>
+      (() => {
+        const websiteId = '42da2378-7c50-46a4-837f-7ad8c2b3cc4a';
+        const loadUmami = () => {
+          if (document.querySelector('script[data-umami-tracker]')) return;
+          const script = document.createElement('script');
+          script.src = 'https://cloud.umami.is/script.js';
+          script.async = true;
+          script.dataset.websiteId = websiteId;
+          script.dataset.umamiTracker = '';
+          document.head.appendChild(script);
+        };
+        const scheduleUmami = () => {
+          if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(loadUmami, { timeout: 2000 });
+          } else {
+            window.setTimeout(loadUmami, 2000);
+          }
+        };
+        window.addEventListener('load', scheduleUmami, { once: true });
+      })();
+    </script>
     <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
     <script is:inline>
