@@ -1,0 +1,9 @@
+name = "luizwitt-contact"
+main = "src/index.ts"
+compatibility_date = "2025-07-01"
+
+[vars]
+CORS_ORIGIN = "https://luizwitt.dev"
+TURNSTILE_EXPECTED_HOSTNAME = "luizwitt.dev"
+RESEND_FROM = "Luiz Witt <contato@luizwitt.dev>"
+RESEND_TO = "contato@luizwitt.dev"
