@@ -1,56 +1,88 @@
 ---
 import Base from '../layouts/Base.astro';
-import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import About from '../components/About.astro';
-import Experience from '../components/Experience.astro';
-import TechStack from '../components/TechStack.astro';
-import Contact from '../components/Contact.astro';
-import Footer from '../components/Footer.astro';
+
+const title = 'Desenvolvimento sob demanda para empresas e agências | Luiz Witt';
+const description = 'Correção de bugs, desenvolvimento de funcionalidades e integrações em React, Node.js, Vue, PHP e WordPress. Projetos pontuais com escopo, prazo e valor definidos.';
+const CONTACT = { whatsapp: '5547991472971', email: 'luizfernandowitt00@gmail.com', linkedin: 'https://www.linkedin.com/in/luizfernandowitt', github: 'https://github.com/luizferw' };
+const hasWhatsApp = CONTACT.whatsapp !== '5511999999999';
+const hasEmail = !CONTACT.email.includes('SEU_');
+const hasLinkedIn = !CONTACT.linkedin.includes('SEU_');
+const hasGitHub = !CONTACT.github.includes('SEU_');
 ---
-
-<Base
-  title="Luiz Fernando Witt — Full Stack Engineer"
-  description="Product-minded full stack engineer building scalable B2B SaaS and internal platforms across React/TypeScript and Python/Node. 60% lower latency, $1.5M+ ARR served."
->
-  <Header />
+<Base title={title} description={description}>
+  <!-- THESIS: Transformo demandas técnicas incertas em entregas finitas e rastreáveis. OWN-WORLD: uma ordem de serviço visual, objetiva e preparada para revisão. STORY: da demanda ao PR, cada etapa fica explícita. FIRST VIEWPORT: oferta, R$ 750, critérios e CTA aparecem junto do preview. FORM: descreva o problema; a mensagem completa abre no WhatsApp. -->
+  <header class="site-header">
+    <nav class="nav wrap" aria-label="Navegação principal">
+      <a class="brand" href="#main">LUIZ WITT<i aria-hidden="true"></i></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <div class="nav-links" id="nav-links">
+        <a href="#servicos">Serviços</a><a href="#processo">Como funciona</a><a href="#tecnologias">Tecnologias</a><a href="#sobre">Sobre</a><a href="#faq">Perguntas frequentes</a><a class="nav-cta" href="#demanda">Enviar uma demanda</a>
+      </div>
+    </nav>
+  </header>
   <main id="main">
-    <Hero />
-    <About />
-    <Experience />
-    <TechStack />
-    <Contact />
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow signal">Ordem de serviço / desenvolvimento sob demanda</p>
+          <h1 id="hero-title">Tire demandas técnicas do backlog <span class="signal">sem contratar outro desenvolvedor</span></h1>
+          <p class="hero-lede">Apoio para agências, startups e empresas de software que precisam corrigir, integrar ou construir algo no produto que já existe.</p>
+          <div class="hero-actions"><a class="button button-primary" href="#demanda">Enviar uma demanda →</a><a class="button button-ghost" href="#processo">Ver como funciona</a></div>
+          <p class="hero-offer"><strong>R$ 750</strong> para começar · escopo, prazo e valor definidos antes do início.</p>
+        </div>
+        <div class="order-preview" aria-live="polite">
+          <div class="order-top"><span class="eyebrow">Prévia da demanda</span><span class="status">ABERTA</span></div>
+          <h2 id="preview-title">Uma tarefa pontual, bem definida.</h2>
+          <div class="chips" role="group" aria-label="Tipo de serviço">
+            <button class="chip" type="button" aria-pressed="true" data-service="bug">Bug</button><button class="chip" type="button" aria-pressed="false" data-service="feature">Funcionalidade</button><button class="chip" type="button" aria-pressed="false" data-service="integration">Integração</button><button class="chip" type="button" aria-pressed="false" data-service="wordpress">WordPress / PHP</button>
+          </div>
+          <dl><div class="order-row"><dt>Entregável</dt><dd id="preview-deliverable">Diagnóstico e correção no código existente</dd></div><div class="order-row"><dt>Proposta</dt><dd>Escopo + prazo + valor antes do início</dd></div><div class="order-row"><dt>Referência</dt><dd>A partir de R$ 750</dd></div></dl>
+          <p class="order-note" id="preview-note">Clique em um tipo de demanda para ver como a proposta muda. Sem JavaScript, o conteúdo inicial continua disponível e os serviços estão listados abaixo.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="servicos" aria-labelledby="audience-title"><div class="wrap"><div class="section-head"><span class="section-index">01 / PARA QUEM</span><div><h2 id="audience-title">Apoio técnico para equipes que precisam entregar.</h2><p class="intro">Você traz o contexto do produto. Eu entro em uma demanda delimitada, sem interromper o ritmo da sua equipe.</p></div></div><div class="audience"><article><p class="eyebrow">01</p><h3>Agências digitais</h3><p>Execução técnica para completar entregas de clientes, destravar bugs e integrar serviços sem aumentar o time fixo.</p></article><article><p class="eyebrow">02</p><h3>Startups e empresas SaaS</h3><p>Capacidade especializada para tirar uma funcionalidade ou dívida técnica do caminho enquanto o time cuida do produto.</p></article><article><p class="eyebrow">03</p><h3>Empresas com sistemas próprios</h3><p>Manutenção e evolução de sistemas internos, com atenção ao código existente e ao impacto na operação.</p></article></div></div></section>
+
+    <section class="section section-dark" aria-labelledby="resolve-title"><div class="wrap"><div class="section-head"><span class="section-index">02 / ESCOPO</span><div><h2 id="resolve-title">O que posso resolver</h2><p class="intro">Trabalho pontual para problemas reais, em React, Node.js, Vue.js, PHP e WordPress.</p></div></div><div class="dark-grid"><article class="service"><span class="tag">01 — Destravar</span><h3>Correção de bugs</h3><p>Erros em React/Vue, APIs Node, formulários, responsividade, autenticação, integrações, build/deploy, PHP e WordPress.</p></article><article class="service"><span class="tag">02 — Evoluir</span><h3>Desenvolvimento de funcionalidades</h3><p>Telas e componentes, fluxos CRUD, dashboards e admin, filtros, tabelas e relatórios, formulários, layouts existentes e ferramentas internas.</p></article><article class="service"><span class="tag">03 — Conectar</span><h3>APIs e integrações</h3><p>APIs externas, webhooks, sincronização de dados, arquivos, frontend/backend, automações Node, pagamentos, CRM, ERP e terceiros.</p></article><article class="service"><span class="tag">04 — Manter</span><h3>WordPress e PHP</h3><p>Plugins e temas, páginas e formulários, atualizações, WooCommerce, integrações externas, performance e layout responsivo.</p></article></div></div></section>
+
+    <section class="section"><div class="wrap"><div class="offer"><div><p class="eyebrow">Entrada recomendada</p><h2>Comece com uma tarefa pontual.</h2><p>Projeto a partir de <strong>R$ 750</strong>. Não há mensalidade obrigatória: o valor final depende da complexidade, estado do projeto, acessos e prazo.</p><a class="button button-ghost" href="#demanda">Descrever minha demanda →</a></div><div><p class="eyebrow">A proposta inclui</p><ul class="checklist"><li>Objetivo e escopo</li><li>Prazo e valor fixo</li><li>Critérios de aceite</li><li>Exclusões e limites</li></ul></div></div></div></section>
+
+    <section class="section" id="processo" aria-labelledby="process-title"><div class="wrap"><div class="section-head"><span class="section-index">03 / RITO</span><div><h2 id="process-title">Um processo simples e previsível</h2><p class="intro">A execução começa somente depois que você entende o que será entregue e aprova a proposta.</p></div></div><div class="process"><article class="step"><strong>01</strong><h3>Envie a demanda</h3><p>Problema, resultado esperado, tecnologia, prazo e contexto.</p></article><article class="step"><strong>02</strong><h3>Avalio o contexto</h3><p>Entendo o produto, o código e o que precisa estar acessível.</p></article><article class="step"><strong>03</strong><h3>Apresento para sua aprovação</h3><p>Você recebe escopo, prazo, valor, aceite e exclusões.</p></article><article class="step"><strong>04</strong><h3>Implemento isolado</h3><p>Preferencialmente em branch e pull request no seu projeto.</p></article><article class="step"><strong>05</strong><h3>Você revisa</h3><p>Entrega rastreável e ajustes dentro do escopo combinado.</p></article></div></div></section>
+
+    <section class="section section-dark" aria-labelledby="modes-title"><div class="wrap"><div class="section-head"><span class="section-index">04 / FORMATO</span><div><h2 id="modes-title">Escolha o tamanho do compromisso.</h2></div></div><div class="modes"><article class="mode"><p class="eyebrow">A partir de R$ 750</p><h3>Tarefa pontual</h3><p>Para um bug, ajuste, integração ou funcionalidade com começo e fim claros.</p></article><article class="mode"><p class="eyebrow">Bloco concentrado</p><h3>Sprint curta</h3><p>Para um conjunto pequeno de entregas relacionadas, com objetivo e janela definidos.</p></article><article class="mode"><p class="eyebrow">Depois da primeira entrega</p><h3>Suporte mensal</h3><p>Para manutenção e evolução contínuas, alinhadas a uma demanda inicial já conhecida.</p></article></div></div></section>
+
+    <section class="section" id="tecnologias" aria-labelledby="tech-title"><div class="wrap"><div class="section-head"><span class="section-index">05 / FERRAMENTAS</span><div><h2 id="tech-title">Tecnologias que entram no fluxo.</h2></div></div><div class="tech-layout"><p class="intro">Não é uma lista para impressionar: são as tecnologias com que consigo entrar no seu projeto e produzir uma entrega integrada.</p><div class="tech-list"><div class="tech-row"><strong>Frontend</strong><span>React, Vue.js, JavaScript, HTML e CSS</span></div><div class="tech-row"><strong>Backend</strong><span>Node.js, APIs REST e integrações</span></div><div class="tech-row"><strong>PHP e CMS</strong><span>PHP, WordPress e WooCommerce</span></div><div class="tech-row"><strong>Fluxo</strong><span>Git, branch, pull request, staging e deploy</span></div></div></div></div></section>
+
+    <section class="section section-dark"><div class="wrap"><div class="section-head"><span class="section-index">06 / GARANTIAS DE TRABALHO</span><div><h2>Menos surpresa. Mais registro.</h2></div></div><div class="diffs"><div><strong>Escopo antes da execução</strong></div><div><strong>Comunicação objetiva</strong></div><div><strong>Código integrado ao projeto existente</strong></div><div><strong>Entrega rastreável</strong></div><div><strong>Sem contrato de longo prazo</strong></div></div></div></section>
+
+    <section class="section" id="sobre" aria-labelledby="about-title"><div class="wrap about-layout"><div><p class="eyebrow">07 / QUEM EXECUTA</p><h2 id="about-title">Luiz Witt, desenvolvimento que cabe no seu contexto.</h2></div><div><p>Trabalho com desenvolvimento web, APIs, integrações e manutenção. React e Node.js são minhas principais ferramentas; também atuo com Vue, PHP e WordPress.</p><p>Já participei de projetos brasileiros e internacionais, entrando em produtos existentes para resolver uma demanda específica com clareza sobre o que será entregue.</p><div class="inline-links">{hasLinkedIn ? <a href={CONTACT.linkedin} rel="noreferrer">LinkedIn ↗</a> : <span>LinkedIn indisponível</span>}{hasGitHub ? <a href={CONTACT.github} rel="noreferrer">GitHub ↗</a> : <span>GitHub indisponível</span>}{hasEmail ? <a href={`mailto:${CONTACT.email}`}>E-mail ↗</a> : <span>E-mail indisponível</span>}</div></div></div></section>
+
+    <section class="section" aria-labelledby="evaluate-title"><div class="wrap"><div class="section-head"><span class="section-index">08 / ANTES DE ENVIAR</span><div><h2 id="evaluate-title">O que preciso para avaliar uma demanda</h2><p class="intro">Quanto melhor o contexto, mais precisa será a conversa inicial.</p></div></div><div class="audience"><article><h3>O problema</h3><p>O que acontece hoje, qual resultado você espera e como saberemos que está resolvido.</p></article><article><h3>O cenário</h3><p>Tecnologia utilizada, link do produto, prints, logs de erro e ambiente de staging quando possível.</p></article><article><h3>Os limites</h3><p>Prazo desejado, orçamento disponível e acessos necessários. <strong>Não envie senhas, tokens ou credenciais.</strong></p></article></div></div></section>
+
+    <section class="section section-dark" id="faq" aria-labelledby="faq-title"><div class="wrap"><div class="section-head"><span class="section-index">09 / DÚVIDAS</span><div><h2 id="faq-title">Perguntas frequentes</h2></div></div><div class="faq"><details><summary>Você aceita projetos pontuais?</summary><p>Sim. Projetos pontuais são o formato principal: uma demanda delimitada, uma proposta e uma entrega revisável.</p></details><details><summary>É obrigatório contratar uma mensalidade?</summary><p>Não. A mensalidade não é obrigatória. Suporte mensal normalmente faz sentido depois de uma primeira entrega avulsa.</p></details><details><summary>Você cobra por hora ou faz diagnóstico pago?</summary><p>O trabalho é proposto por escopo e valor. Uma análise mais profunda pode ser combinada como diagnóstico pago quando a demanda exigir.</p></details><details><summary>R$ 750 é o valor final?</summary><p>É o preço inicial para uma tarefa pontual. O valor final depende da complexidade, estado do projeto, acessos e prazo.</p></details><details><summary>Você constrói produtos completos do zero?</summary><p>O foco é desenvolvimento sob demanda em produtos existentes. Uma construção maior pode ser avaliada caso a caso.</p></details><details><summary>Você atende demandas urgentes?</summary><p>O prazo é avaliado conforme o contexto e a fila de trabalho. Não prometo disponibilidade de emergência antes de conhecer a demanda.</p></details><details><summary>Existe suporte 24 horas?</summary><p>Não ofereço suporte 24 horas ou garantia de atendimento emergencial.</p></details><details><summary>Como funciona o pagamento?</summary><p>As condições de pagamento entram na proposta, junto com escopo, prazo e valor, antes do início.</p></details><details><summary>Você assina contrato ou NDA?</summary><p>Podemos alinhar contrato e NDA conforme a necessidade do projeto.</p></details></div></div></section>
+
+    <section class="section contact" id="demanda" aria-labelledby="form-title"><div class="wrap contact-layout"><div class="contact-copy"><p class="eyebrow signal">10 / ABRIR ORDEM</p><h2 id="form-title">Tem uma demanda técnica parada?</h2><p>Preencha o contexto. Ao enviar, sua mensagem completa será preparada para o WhatsApp — sem senha, token ou credencial.</p></div><form class="contact-form" id="demand-form" novalidate><div class="form-grid"><div class="field"><label for="name">Nome *</label><input id="name" name="Nome" required autocomplete="name" /></div><div class="field"><label for="company">Empresa *</label><input id="company" name="Empresa" required autocomplete="organization" /></div><div class="field"><label for="email">E-mail profissional *</label><input id="email" name="E-mail profissional" type="email" required autocomplete="email" /></div><div class="field"><label for="phone">Telefone/WhatsApp (opcional)</label><input id="phone" name="Telefone/WhatsApp" type="tel" autocomplete="tel" /></div><div class="field field-wide"><label for="site">Site ou produto</label><input id="site" name="Site ou produto" type="url" placeholder="https://" /></div><div class="field"><label for="technology">Tecnologia utilizada *</label><input id="technology" name="Tecnologia utilizada" required placeholder="Ex.: React + Node.js" /></div><div class="field"><label for="deadline">Existe um prazo? *</label><select id="deadline" name="Existe um prazo?" required><option value="">Selecione</option><option>Sim, tenho uma data definida</option><option>Tenho uma janela aproximada</option><option>Não tenho prazo definido</option></select></div><div class="field field-wide"><label for="demand">Qual é a demanda? *</label><textarea id="demand" name="Qual é a demanda?" required placeholder="O que acontece hoje e qual resultado você espera?"></textarea></div><div class="field field-wide"><label for="budget">Orçamento *</label><select id="budget" name="Orçamento" required><option value="">Selecione</option><option>Até R$ 1.500</option><option>De R$ 1.500 a R$ 3.000</option><option>De R$ 3.000 a R$ 5.000</option><option>Acima de R$ 5.000</option><option>Ainda não sei</option></select></div></div><div class="form-foot"><button class="button button-primary" type="submit">Enviar pelo WhatsApp →</button><span class="form-note">Ao enviar, você concorda em compartilhar esses dados para avaliação da demanda.</span></div><p class="form-status" id="form-status" role="status" aria-live="polite"></p></form></div></section>
+    <section class="final"><div class="wrap final-inner"><div><p class="eyebrow">Próximo passo</p><h2>Uma demanda descrita vale mais que um backlog parado.</h2></div><div class="hero-actions"><a class="button button-ghost" href="#demanda">Descrever minha demanda</a>{hasWhatsApp ? <a class="button button-ghost" href={`https://wa.me/${CONTACT.whatsapp}`}>WhatsApp ↗</a> : <span class="contact-unavailable">WhatsApp indisponível no momento</span>}</div></div></section>
   </main>
-  <Footer />
-
-  <script>
-    import { initSmoothScroll } from '../lib/smoothScroll';
-    import { initAnimations } from '../lib/animations';
-
-    const start = () => {
-      const lenis = initSmoothScroll();
-      initAnimations(lenis);
-
-      // anchor links should route through Lenis for the smooth glide
-      if (lenis) {
-        document.querySelectorAll<HTMLAnchorElement>('a[href^="#"]').forEach((a) => {
-          a.addEventListener('click', (e) => {
-            const id = a.getAttribute('href');
-            if (!id || id === '#') return;
-            const target = document.querySelector(id);
-            if (target) {
-              e.preventDefault();
-              lenis.scrollTo(target as HTMLElement, { offset: -64 });
-            }
-          });
-        });
-      }
-    };
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', start);
-    } else {
-      start();
-    }
-  </script>
+  <footer class="footer"><div class="wrap footer-grid"><div><a class="brand" href="#main">LUIZ WITT<i aria-hidden="true"></i></a><p>Desenvolvimento sob demanda em React, Node.js, Vue.js, PHP e WordPress.</p></div><div class="footer-links">{hasLinkedIn ? <a href={CONTACT.linkedin}>LinkedIn</a> : <span>LinkedIn indisponível</span>}{hasGitHub ? <a href={CONTACT.github}>GitHub</a> : <span>GitHub indisponível</span>}{hasEmail ? <a href={`mailto:${CONTACT.email}`}>E-mail</a> : <span>E-mail indisponível</span>}{hasWhatsApp ? <a href={`https://wa.me/${CONTACT.whatsapp}`}>WhatsApp</a> : <span>WhatsApp indisponível</span>}<a href="/politica-de-privacidade">Política de Privacidade</a><span>© 2026 Luiz Witt</span></div></div></footer>
 </Base>
+
+<script is:inline define:vars={{ whatsapp: CONTACT.whatsapp }}>
+  const navToggle = document.querySelector('.nav-toggle');
+  const nav = document.querySelector('#nav-links');
+  const closeMenu = (returnFocus = false) => { navToggle?.setAttribute('aria-expanded', 'false'); nav?.classList.remove('is-open'); if (returnFocus) navToggle?.focus(); };
+  navToggle?.addEventListener('click', () => { const open = navToggle.getAttribute('aria-expanded') === 'true'; navToggle.setAttribute('aria-expanded', String(!open)); nav?.classList.toggle('is-open', !open); });
+  nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => closeMenu()));
+  document.addEventListener('keydown', (event) => { if (event.key === 'Escape' && navToggle?.getAttribute('aria-expanded') === 'true') closeMenu(true); });
+  const serviceData = {
+    bug: ['Correção de um erro no código existente', 'Diagnóstico e correção no código existente'],
+    feature: ['Uma funcionalidade pronta para uso', 'Telas, fluxo e critérios de aceite definidos'],
+    integration: ['Uma integração conectada e rastreável', 'API, webhook ou sincronização documentada'],
+    wordpress: ['Manutenção aplicada no site ou CMS', 'Ajuste em plugin, tema, PHP ou WooCommerce']
+  };
+  document.querySelectorAll('.chip').forEach((chip) => chip.addEventListener('click', () => { document.querySelectorAll('.chip').forEach((item) => item.setAttribute('aria-pressed', 'false')); chip.setAttribute('aria-pressed', 'true'); const data = serviceData[chip.dataset.service]; if (data) { document.querySelector('#preview-title').textContent = data[0]; document.querySelector('#preview-deliverable').textContent = data[1]; } }));
+  const form = document.querySelector('#demand-form'); let status = document.querySelector('#form-status');
+  if (!status && form) { status = document.createElement('p'); status.id = 'form-status'; status.className = 'form-status'; status.setAttribute('role', 'status'); status.setAttribute('aria-live', 'polite'); form.append(status); }
+  form?.addEventListener('submit', (event) => { event.preventDefault(); if (!form.checkValidity()) { form.reportValidity(); status.textContent = 'Confira os campos obrigatórios antes de enviar.'; return; } const data = new FormData(form); const message = ['Olá, Luiz! Quero enviar uma demanda técnica:', ...Array.from(data.entries()).map(([key, value]) => `${key}: ${value}`), '', 'Não envio senhas, tokens ou credenciais.'].join('\n'); if (!whatsapp || whatsapp === '5511999999999') { status.textContent = 'O formulário foi preenchido, mas o WhatsApp ainda não está configurado. A mensagem não foi enviada; você pode manter os dados e tentar novamente mais tarde.'; return; } window.open(`https://wa.me/${whatsapp}?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer'); status.textContent = 'Mensagem preparada e aberta para revisão e envio no WhatsApp.'; });
+</script>

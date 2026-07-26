@@ -1,5 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="8" fill="#15131e"/>
-  <text x="16" y="22" text-anchor="middle" font-family="'DejaVu Sans',sans-serif" font-size="17" font-weight="800" fill="#f4f3ef">L</text>
-  <circle cx="24.5" cy="9" r="3" fill="#f0a93c"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" role="img" aria-labelledby="title desc">
+  <title id="title">Luiz Witt</title>
+  <desc id="desc">L mark with lime status dot</desc>
+  <rect width="32" height="32" rx="8" fill="#101820"/>
+  <text x="16" y="22" text-anchor="middle" font-family="'DejaVu Sans',sans-serif" font-size="17" font-weight="800" fill="#f4f0e8">L</text>
+  <circle cx="24.5" cy="9" r="3" fill="#c5e86c"/>
 </svg>
