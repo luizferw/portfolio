@@ -16,7 +16,7 @@ const OPTIONAL = ["company", "phone", "site", "technology"] as const;
 const TURNSTILE_ACTION = "contact_form";
 const MAX_LENGTHS: Record<string, number> = {
   name: 100, email: 254, demand: 5_000, deadline: 200, budget: 200,
-  company: 150, phone: 50, site: 2_048, technology: 500, honeypot: 200,
+  company: 150, phone: 50, site: 2_048, technology: 500, honeypot: 200, turnstileToken: 4_096,
 };
 
 type Contact = Record<(typeof REQUIRED)[number] | (typeof OPTIONAL)[number], string>;
@@ -63,7 +63,7 @@ function validate(input: unknown): { contact?: Contact; token?: string; error?: 
   const allowed = new Set([...REQUIRED, ...OPTIONAL, "honeypot", "turnstileToken"]);
   if (Object.keys(data).some((key) => !allowed.has(key))) return { error: "Unknown contact field." };
   if (data.honeypot !== undefined && (typeof data.honeypot !== "string" || data.honeypot.trim())) return { error: "Invalid submission." };
-  const token = cleanText(data.turnstileToken, "honeypot");
+  const token = cleanText(data.turnstileToken, "turnstileToken");
   if (!token) return { error: "Invalid or missing turnstile token." };
   const contact = {} as Contact;
   for (const field of REQUIRED) {
